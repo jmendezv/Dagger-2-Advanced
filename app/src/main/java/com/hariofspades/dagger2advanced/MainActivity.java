@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        //beforeDagger2();
-        //afterDagger();
+        beforeDagger2();
+        afterDagger();
         afterActivityLevelComponent();
         populateUsers();
 
