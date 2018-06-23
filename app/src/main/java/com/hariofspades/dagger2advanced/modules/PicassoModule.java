@@ -3,7 +3,6 @@ package com.hariofspades.dagger2advanced.modules;
 import android.content.Context;
 
 import com.hariofspades.dagger2advanced.interfaces.annotations.ApplicationContextAnnotation;
-import com.hariofspades.dagger2advanced.interfaces.annotations.RandomUserApplicationScopeAnnotation;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 

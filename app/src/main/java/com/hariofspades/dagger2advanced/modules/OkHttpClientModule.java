@@ -3,7 +3,6 @@ package com.hariofspades.dagger2advanced.modules;
 import android.content.Context;
 
 import com.hariofspades.dagger2advanced.interfaces.annotations.ApplicationContextAnnotation;
-import com.hariofspades.dagger2advanced.interfaces.annotations.RandomUserApplicationScopeAnnotation;
 
 import java.io.File;
 
@@ -35,7 +34,6 @@ public class OkHttpClientModule {
     }
 
     @Provides
-    @RandomUserApplicationScopeAnnotation
     public File file(@ApplicationContextAnnotation Context context){
         File file = new File(context.getCacheDir(), "HttpCache");
         file.mkdirs();

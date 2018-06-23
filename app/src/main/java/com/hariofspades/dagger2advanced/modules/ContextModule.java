@@ -4,11 +4,7 @@ import android.content.Context;
 
 import com.hariofspades.dagger2advanced.adapter.RandomUserAdapter;
 import com.hariofspades.dagger2advanced.interfaces.annotations.ApplicationContextAnnotation;
-import com.hariofspades.dagger2advanced.interfaces.annotations.MainActivityScopeAnnotation;
-import com.hariofspades.dagger2advanced.interfaces.annotations.RandomUserApplicationScopeAnnotation;
 import com.squareup.picasso.Picasso;
-
-import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
@@ -25,21 +21,15 @@ public class ContextModule {
         this.context = context;
     }
 
-    @RandomUserApplicationScopeAnnotation
+    //@RandomUserAnnotation
+    @ApplicationContextAnnotation
     @Provides
     public Context getContext() {
         return context;
     }
 
-    @ApplicationContextAnnotation
     @Provides
-    public Context getApplicationContext() {
-        return context.getApplicationContext();
-    }
-
-    @Provides
-    @MainActivityScopeAnnotation
-    public RandomUserAdapter randomUserAdapter(Picasso picasso){
+    public RandomUserAdapter getRandomUserAdapter(Picasso picasso){
         return new RandomUserAdapter(picasso);
     }
 }

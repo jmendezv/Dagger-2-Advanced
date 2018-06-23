@@ -1,6 +1,5 @@
 package com.hariofspades.dagger2advanced.components;
 
-import com.hariofspades.dagger2advanced.interfaces.annotations.RandomUserApplicationScopeAnnotation;
 import com.hariofspades.dagger2advanced.interfaces.RandomUsersApi;
 import com.hariofspades.dagger2advanced.modules.PicassoModule;
 import com.hariofspades.dagger2advanced.modules.RandomUsersModule;
@@ -17,7 +16,6 @@ import dagger.Component;
  * The best practice of using a component is to expose only the top level
  * dependency and keep other inner dependency under the hood.
  */
-@RandomUserApplicationScopeAnnotation
 @Component(modules = {RandomUsersModule.class, PicassoModule.class})
 public interface RandomUserComponent {
 
