@@ -16,7 +16,6 @@ import com.hariofspades.dagger2advanced.components.RandomUserComponent;
 import com.hariofspades.dagger2advanced.interfaces.RandomUsersApi;
 import com.hariofspades.dagger2advanced.model.RandomUsers;
 import com.hariofspades.dagger2advanced.modules.ContextModule;
-import com.hariofspades.dagger2advanced.modules.MainActivityModule;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 import com.hariofspades.dagger2advanced.components.*;
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
       MainActivityComponent mainActivityComponent =
            DaggerMainActivityComponent
                 .builder()
-                .mainActivityModule(new MainActivityModule())
+                .contextModule(new ContextModule(this))
                 .randomUserComponent(RandomUserApplication.get(this)
                      .getRandomUserComponent())
                 .build();

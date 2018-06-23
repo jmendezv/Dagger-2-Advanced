@@ -2,7 +2,7 @@ package com.hariofspades.dagger2advanced.components;
 
 import com.hariofspades.dagger2advanced.MainActivity;
 import com.hariofspades.dagger2advanced.interfaces.annotations.MainActivityScopeAnnotation;
-import com.hariofspades.dagger2advanced.modules.MainActivityModule;
+import com.hariofspades.dagger2advanced.modules.ContextModule;
 
 import dagger.Component;
 
@@ -25,7 +25,7 @@ import dagger.Component;
  * Components can use bindings only from another component interface by declaring a component
  * dependency.
  */
-@Component(modules = {MainActivityModule.class}, dependencies = {RandomUserComponent.class})
+@Component(modules = {ContextModule.class}, dependencies = {RandomUserComponent.class})
 @MainActivityScopeAnnotation
 public interface MainActivityComponent {
 
