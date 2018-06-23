@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hariofspades.dagger2advanced.MainActivityFeature.DaggerMainActivityComponent;
 import com.hariofspades.dagger2advanced.adapter.RandomUserAdapter;
 import com.hariofspades.dagger2advanced.application.RandomUserApplication;
 import com.hariofspades.dagger2advanced.components.DaggerRandomUserComponent;
@@ -20,6 +19,7 @@ import com.hariofspades.dagger2advanced.modules.ContextModule;
 import com.hariofspades.dagger2advanced.modules.MainActivityModule;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
+import com.hariofspades.dagger2advanced.components.*;
 
 import java.io.File;
 
