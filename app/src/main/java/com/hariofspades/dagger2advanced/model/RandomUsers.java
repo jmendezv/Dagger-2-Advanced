@@ -6,6 +6,11 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+/*
+*
+* Generated with http://www.jsonschema2pojo.org
+*
+* */
 public class RandomUsers {
 
     @SerializedName("results")

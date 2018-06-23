@@ -3,7 +3,7 @@ package com.hariofspades.dagger2advanced.module;
 import android.app.Activity;
 import android.content.Context;
 
-import com.hariofspades.dagger2advanced.interfaces.RandomUserApplicationScope;
+import com.hariofspades.dagger2advanced.interfaces.RandomUserApplicationScopeAnnotation;
 
 import javax.inject.Named;
 
@@ -23,7 +23,7 @@ public class ActivityModule {
     }
 
     @Named("activity_context")
-    @RandomUserApplicationScope
+    @RandomUserApplicationScopeAnnotation
     @Provides
     public Context context(){ return context; }
 }

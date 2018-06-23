@@ -6,6 +6,6 @@ import javax.inject.Qualifier;
  * Created by Hari on 17/12/17.
  */
 @Qualifier
-public @interface ApplicationContext {
+public @interface ApplicationContextAnnotation {
 
 }

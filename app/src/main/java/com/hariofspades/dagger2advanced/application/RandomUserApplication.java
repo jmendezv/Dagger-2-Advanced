@@ -11,11 +11,13 @@ import timber.log.Timber;
 
 /**
  * Created by Hari on 20/12/17.
+ *
+ * Important: add application name in Manifest file!
+ *
  */
 
 public class RandomUserApplication extends Application {
 
-    //add application name in Manifest file
     private RandomUserComponent randomUserApplicationComponent;
 
     public static RandomUserApplication get(Activity activity){

@@ -2,7 +2,7 @@ package com.hariofspades.dagger2advanced.module;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hariofspades.dagger2advanced.interfaces.RandomUserApplicationScope;
+import com.hariofspades.dagger2advanced.interfaces.RandomUserApplicationScopeAnnotation;
 import com.hariofspades.dagger2advanced.interfaces.RandomUsersApi;
 
 import dagger.Module;
@@ -22,7 +22,7 @@ public class RandomUsersModule {
         return retrofit.create(RandomUsersApi.class);
     }
 
-    @RandomUserApplicationScope
+    @RandomUserApplicationScopeAnnotation
     @Provides
     public Retrofit retrofit(OkHttpClient okHttpClient,
                              GsonConverterFactory gsonConverterFactory, Gson gson){

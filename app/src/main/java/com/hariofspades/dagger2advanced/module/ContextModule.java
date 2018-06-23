@@ -1,12 +1,9 @@
 package com.hariofspades.dagger2advanced.module;
 
-import android.app.Application;
 import android.content.Context;
 
-import com.hariofspades.dagger2advanced.interfaces.ApplicationContext;
-import com.hariofspades.dagger2advanced.interfaces.RandomUserApplicationScope;
-
-import javax.inject.Named;
+import com.hariofspades.dagger2advanced.interfaces.ApplicationContextAnnotation;
+import com.hariofspades.dagger2advanced.interfaces.RandomUserApplicationScopeAnnotation;
 
 import dagger.Module;
 import dagger.Provides;
@@ -23,8 +20,8 @@ public class ContextModule {
         this.context = context;
     }
 
-    @ApplicationContext
-    @RandomUserApplicationScope
+    @ApplicationContextAnnotation
+    @RandomUserApplicationScopeAnnotation
     @Provides
     public Context context(){ return context.getApplicationContext(); }
 }

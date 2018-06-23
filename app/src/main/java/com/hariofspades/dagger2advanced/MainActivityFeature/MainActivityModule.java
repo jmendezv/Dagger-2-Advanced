@@ -20,7 +20,7 @@ public class MainActivityModule {
     }
 
     @Provides
-    @MainActivityScope
+    @MainActivityScopeAnnotation
     public RandomUserAdapter randomUserAdapter(Picasso picasso){
         return new RandomUserAdapter(mainActivity, picasso);
     }

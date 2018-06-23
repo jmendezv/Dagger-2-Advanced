@@ -2,13 +2,10 @@ package com.hariofspades.dagger2advanced.module;
 
 import android.content.Context;
 
-import com.hariofspades.dagger2advanced.interfaces.ApplicationContext;
-import com.hariofspades.dagger2advanced.interfaces.RandomUserApplicationScope;
+import com.hariofspades.dagger2advanced.interfaces.ApplicationContextAnnotation;
+import com.hariofspades.dagger2advanced.interfaces.RandomUserApplicationScopeAnnotation;
 
 import java.io.File;
-import java.util.Timer;
-
-import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
@@ -38,8 +35,8 @@ public class OkHttpClientModule {
     }
 
     @Provides
-    @RandomUserApplicationScope
-    public File file(@ApplicationContext Context context){
+    @RandomUserApplicationScopeAnnotation
+    public File file(@ApplicationContextAnnotation Context context){
         File file = new File(context.getCacheDir(), "HttpCache");
         file.mkdirs();
         return file;
