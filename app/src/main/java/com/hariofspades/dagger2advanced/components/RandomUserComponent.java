@@ -2,7 +2,7 @@ package com.hariofspades.dagger2advanced.components;
 
 import com.hariofspades.dagger2advanced.interfaces.RandomUsersApi;
 import com.hariofspades.dagger2advanced.modules.PicassoModule;
-import com.hariofspades.dagger2advanced.modules.RandomUsersModule;
+import com.hariofspades.dagger2advanced.modules.RandomUsersApiModule;
 import com.squareup.picasso.Picasso;
 
 import dagger.Component;
@@ -16,7 +16,7 @@ import dagger.Component;
  * The best practice of using a component is to expose only the top level
  * dependency and keep other inner dependency under the hood.
  */
-@Component(modules = {RandomUsersModule.class, PicassoModule.class})
+@Component(modules = {RandomUsersApiModule.class, PicassoModule.class})
 public interface RandomUserComponent {
 
     RandomUsersApi getRandomUserApi();

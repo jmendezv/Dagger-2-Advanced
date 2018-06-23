@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Hari on 23/11/17.
  */
 @Module(includes = OkHttpClientModule.class)
-public class RandomUsersModule {
+public class RandomUsersApiModule {
 
     @Provides
     public RandomUsersApi randomUsersApi(Retrofit retrofit){
