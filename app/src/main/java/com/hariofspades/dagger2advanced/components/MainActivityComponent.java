@@ -1,7 +1,6 @@
 package com.hariofspades.dagger2advanced.components;
 
 import com.hariofspades.dagger2advanced.MainActivity;
-import com.hariofspades.dagger2advanced.interfaces.annotations.MainActivityScopeAnnotation;
 import com.hariofspades.dagger2advanced.modules.ContextModule;
 
 import dagger.Component;
@@ -26,7 +25,6 @@ import dagger.Component;
  * dependency.
  */
 @Component(modules = {ContextModule.class}, dependencies = {RandomUserComponent.class})
-@MainActivityScopeAnnotation
 public interface MainActivityComponent {
 
    void inject(MainActivity mainActivity);
