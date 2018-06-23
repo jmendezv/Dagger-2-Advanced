@@ -6,42 +6,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.hariofspades.dagger2advanced.adapter.RandomUserAdapter;
 import com.hariofspades.dagger2advanced.application.RandomUserApplication;
-import com.hariofspades.dagger2advanced.components.DaggerRandomUserComponent;
 import com.hariofspades.dagger2advanced.components.MainActivityComponent;
-import com.hariofspades.dagger2advanced.components.RandomUserComponent;
 import com.hariofspades.dagger2advanced.interfaces.RandomUsersApi;
 import com.hariofspades.dagger2advanced.model.RandomUsers;
 import com.hariofspades.dagger2advanced.modules.ContextModule;
-import com.jakewharton.picasso.OkHttp3Downloader;
-import com.squareup.picasso.Picasso;
 import com.hariofspades.dagger2advanced.components.*;
-
-import java.io.File;
 
 import javax.inject.Inject;
 
-import okhttp3.Cache;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 // an API for Android’s Log class
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
-   Retrofit retrofit;
+   // private Retrofit retrofit;
 
-   RecyclerView recyclerView;
+   private RecyclerView recyclerView;
 
-   Picasso picasso;
+   // private Picasso picasso;
 
    @Inject
    RandomUsersApi randomUsersApi;
@@ -63,61 +50,60 @@ public class MainActivity extends AppCompatActivity {
    }
 
    private void afterActivityLevelComponent() {
-      MainActivityComponent mainActivityComponent =
-           DaggerMainActivityComponent
-                .builder()
-                .contextModule(new ContextModule(this))
-                .randomUserComponent(RandomUserApplication.get(this)
-                     .getRandomUserComponent())
-                .build();
-      mainActivityComponent.inject(this);
+      DaggerMainActivityComponent
+           .builder()
+           .contextModule(new ContextModule(this))
+           .randomUserComponent(RandomUserApplication.get(this)
+                .getRandomUserComponent())
+           .build()
+           .inject(this);
    }
 
    public void afterDagger() {
-      RandomUserComponent daggerRandomUserComponent = DaggerRandomUserComponent.builder()
-           .contextModule(new ContextModule(this))
-           .build();
-      picasso = daggerRandomUserComponent.getPicasso();
-      randomUsersApi = daggerRandomUserComponent.getRandomUserApi();
+//      RandomUserComponent daggerRandomUserComponent = DaggerRandomUserComponent.builder()
+//           .contextModule(new ContextModule(this))
+//           .build();
+//      picasso = daggerRandomUserComponent.getPicasso();
+//      randomUsersApi = daggerRandomUserComponent.getRandomUserApi();
    }
 
    private void beforeDagger2() {
-      GsonBuilder gsonBuilder = new GsonBuilder();
-      Gson gson = gsonBuilder.create();
-
-      Timber.plant(new Timber.DebugTree());
-
-      File cacheFile = new File(this.getCacheDir(), "HttpCache");
-      cacheFile.mkdirs();
-
-      Cache cache = new Cache(cacheFile, 10 * 1000 * 1000); //10 MB
-
-      HttpLoggingInterceptor httpLoggingInterceptor = new
-           HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-         @Override
-         public void log(@NonNull String message) {
-            Timber.i(message);
-         }
-      });
-
-      httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-
-      OkHttpClient okHttpClient = new OkHttpClient()
-           .newBuilder()
-           .cache(cache)
-           .addInterceptor(httpLoggingInterceptor)
-           .build();
-
-      OkHttp3Downloader okHttpDownloader = new OkHttp3Downloader(okHttpClient);
-
-      picasso = new Picasso.Builder(this).downloader(okHttpDownloader).build();
-
-      retrofit = new Retrofit.Builder()
-           .client(okHttpClient)
-           .baseUrl("https://randomuser.me/")
-           .addConverterFactory(GsonConverterFactory.create(gson))
-           .build();
+//      GsonBuilder gsonBuilder = new GsonBuilder();
+//      Gson gson = gsonBuilder.create();
+//
+//      Timber.plant(new Timber.DebugTree());
+//
+//      File cacheFile = new File(this.getCacheDir(), "HttpCache");
+//      cacheFile.mkdirs();
+//
+//      Cache cache = new Cache(cacheFile, 10 * 1000 * 1000); //10 MB
+//
+//      HttpLoggingInterceptor httpLoggingInterceptor = new
+//           HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+//         @Override
+//         public void log(@NonNull String message) {
+//            Timber.i(message);
+//         }
+//      });
+//
+//      httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//
+//
+//      OkHttpClient okHttpClient = new OkHttpClient()
+//           .newBuilder()
+//           .cache(cache)
+//           .addInterceptor(httpLoggingInterceptor)
+//           .build();
+//
+//      OkHttp3Downloader okHttpDownloader = new OkHttp3Downloader(okHttpClient);
+//
+//      picasso = new Picasso.Builder(this).downloader(okHttpDownloader).build();
+//
+//      retrofit = new Retrofit.Builder()
+//           .client(okHttpClient)
+//           .baseUrl("https://randomuser.me/")
+//           .addConverterFactory(GsonConverterFactory.create(gson))
+//           .build();
    }
 
    private void initViews() {
@@ -126,7 +112,9 @@ public class MainActivity extends AppCompatActivity {
    }
 
    private void populateUsers() {
-      Call<RandomUsers> randomUsersCall = getRandomUserService().getRandomUsers(10);
+      Call<RandomUsers> randomUsersCall =
+           randomUsersApi.getRandomUsers(10);
+
       randomUsersCall.enqueue(new Callback<RandomUsers>() {
          @Override
          public void onResponse(Call<RandomUsers> call, @NonNull Response<RandomUsers> response) {
@@ -138,15 +126,9 @@ public class MainActivity extends AppCompatActivity {
 
          @Override
          public void onFailure(Call<RandomUsers> call, Throwable t) {
-
             Timber.i(t.getMessage());
          }
       });
    }
-
-   public RandomUsersApi getRandomUserService() {
-      return randomUsersApi;
-   }
-
 
 }
