@@ -1,4 +1,4 @@
-package com.hariofspades.dagger2advanced.interfaces;
+package com.hariofspades.dagger2advanced.interfaces.annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

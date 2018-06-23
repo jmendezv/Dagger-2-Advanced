@@ -3,9 +3,9 @@ package com.hariofspades.dagger2advanced.application;
 import android.app.Activity;
 import android.app.Application;
 
-import com.hariofspades.dagger2advanced.component.DaggerRandomUserComponent;
-import com.hariofspades.dagger2advanced.component.RandomUserComponent;
-import com.hariofspades.dagger2advanced.module.ContextModule;
+import com.hariofspades.dagger2advanced.components.DaggerRandomUserComponent;
+import com.hariofspades.dagger2advanced.components.RandomUserComponent;
+import com.hariofspades.dagger2advanced.modules.ContextModule;
 
 import timber.log.Timber;
 

@@ -1,9 +1,9 @@
-package com.hariofspades.dagger2advanced.component;
+package com.hariofspades.dagger2advanced.components;
 
-import com.hariofspades.dagger2advanced.interfaces.RandomUserApplicationScopeAnnotation;
+import com.hariofspades.dagger2advanced.interfaces.annotations.RandomUserApplicationScopeAnnotation;
 import com.hariofspades.dagger2advanced.interfaces.RandomUsersApi;
-import com.hariofspades.dagger2advanced.module.PicassoModule;
-import com.hariofspades.dagger2advanced.module.RandomUsersModule;
+import com.hariofspades.dagger2advanced.modules.PicassoModule;
+import com.hariofspades.dagger2advanced.modules.RandomUsersModule;
 import com.squareup.picasso.Picasso;
 
 import dagger.Component;

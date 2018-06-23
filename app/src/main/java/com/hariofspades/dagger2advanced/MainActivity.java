@@ -1,26 +1,24 @@
 package com.hariofspades.dagger2advanced;
 
-import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hariofspades.dagger2advanced.MainActivityFeature.DaggerMainActivityComponent;
-import com.hariofspades.dagger2advanced.MainActivityFeature.MainActivityComponent;
-import com.hariofspades.dagger2advanced.MainActivityFeature.MainActivityModule;
 import com.hariofspades.dagger2advanced.adapter.RandomUserAdapter;
 import com.hariofspades.dagger2advanced.application.RandomUserApplication;
-import com.hariofspades.dagger2advanced.component.DaggerRandomUserComponent;
-import com.hariofspades.dagger2advanced.component.RandomUserComponent;
+import com.hariofspades.dagger2advanced.components.DaggerRandomUserComponent;
+import com.hariofspades.dagger2advanced.components.MainActivityComponent;
+import com.hariofspades.dagger2advanced.components.RandomUserComponent;
 import com.hariofspades.dagger2advanced.interfaces.RandomUsersApi;
 import com.hariofspades.dagger2advanced.model.RandomUsers;
-import com.hariofspades.dagger2advanced.module.ContextModule;
+import com.hariofspades.dagger2advanced.modules.ContextModule;
+import com.hariofspades.dagger2advanced.modules.MainActivityModule;
 import com.jakewharton.picasso.OkHttp3Downloader;
-import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;

@@ -1,9 +1,9 @@
-package com.hariofspades.dagger2advanced.module;
+package com.hariofspades.dagger2advanced.modules;
 
 import android.app.Activity;
 import android.content.Context;
 
-import com.hariofspades.dagger2advanced.interfaces.RandomUserApplicationScopeAnnotation;
+import com.hariofspades.dagger2advanced.interfaces.annotations.RandomUserApplicationScopeAnnotation;
 
 import javax.inject.Named;
 

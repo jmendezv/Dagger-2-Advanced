@@ -1,6 +1,7 @@
-package com.hariofspades.dagger2advanced.MainActivityFeature;
+package com.hariofspades.dagger2advanced.modules;
 
 import com.hariofspades.dagger2advanced.MainActivity;
+import com.hariofspades.dagger2advanced.interfaces.annotations.MainActivityScopeAnnotation;
 import com.hariofspades.dagger2advanced.adapter.RandomUserAdapter;
 import com.squareup.picasso.Picasso;
 

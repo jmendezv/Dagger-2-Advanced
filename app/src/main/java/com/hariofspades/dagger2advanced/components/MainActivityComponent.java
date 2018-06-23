@@ -1,7 +1,8 @@
-package com.hariofspades.dagger2advanced.MainActivityFeature;
+package com.hariofspades.dagger2advanced.components;
 
 import com.hariofspades.dagger2advanced.MainActivity;
-import com.hariofspades.dagger2advanced.component.RandomUserComponent;
+import com.hariofspades.dagger2advanced.interfaces.annotations.MainActivityScopeAnnotation;
+import com.hariofspades.dagger2advanced.modules.MainActivityModule;
 
 import dagger.Component;
 

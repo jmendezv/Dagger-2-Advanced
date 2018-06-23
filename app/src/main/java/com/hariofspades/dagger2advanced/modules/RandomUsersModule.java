@@ -1,8 +1,8 @@
-package com.hariofspades.dagger2advanced.module;
+package com.hariofspades.dagger2advanced.modules;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hariofspades.dagger2advanced.interfaces.RandomUserApplicationScopeAnnotation;
+import com.hariofspades.dagger2advanced.interfaces.annotations.RandomUserApplicationScopeAnnotation;
 import com.hariofspades.dagger2advanced.interfaces.RandomUsersApi;
 
 import dagger.Module;
@@ -25,7 +25,7 @@ public class RandomUsersModule {
     @RandomUserApplicationScopeAnnotation
     @Provides
     public Retrofit retrofit(OkHttpClient okHttpClient,
-                             GsonConverterFactory gsonConverterFactory, Gson gson){
+                             GsonConverterFactory gsonConverterFactory){
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl("https://randomuser.me/")
