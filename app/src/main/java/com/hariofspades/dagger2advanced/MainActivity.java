@@ -33,11 +33,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+// an API for Android’s Log class
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
    Retrofit retrofit;
+
    RecyclerView recyclerView;
 
    Picasso picasso;
@@ -65,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
       MainActivityComponent mainActivityComponent =
            DaggerMainActivityComponent
                 .builder()
-                .mainActivityModule(new MainActivityModule(this))
+                .mainActivityModule(new MainActivityModule())
                 .randomUserComponent(RandomUserApplication.get(this)
-                     .getRandomUserApplicationComponent())
+                     .getRandomUserComponent())
                 .build();
       mainActivityComponent.injectMainActivity(this);
    }

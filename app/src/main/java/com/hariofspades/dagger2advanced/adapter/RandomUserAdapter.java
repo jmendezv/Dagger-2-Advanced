@@ -25,7 +25,7 @@ public class RandomUserAdapter extends RecyclerView.Adapter<RandomUserAdapter.Ra
     private List<Result> resultList = new ArrayList<>();
 
 
-    public RandomUserAdapter(MainActivity mainActivity, Picasso picasso) {
+    public RandomUserAdapter(Picasso picasso) {
         this.picasso = picasso;
     }
 

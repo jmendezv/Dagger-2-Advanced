@@ -11,30 +11,31 @@ import timber.log.Timber;
 
 /**
  * Created by Hari on 20/12/17.
- *
+ * <p>
  * Important: add application name in Manifest file!
- *
  */
 
 public class RandomUserApplication extends Application {
 
-    private RandomUserComponent randomUserApplicationComponent;
+   private RandomUserComponent randomUserComponent;
 
-    public static RandomUserApplication get(Activity activity){
-        return (RandomUserApplication) activity.getApplication();
-    }
+   public static RandomUserApplication get(Activity activity) {
+      return (RandomUserApplication) activity.getApplication();
+   }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        Timber.plant(new Timber.DebugTree());
+   @Override
+   public void onCreate() {
+      super.onCreate();
+      Timber.plant(new Timber.DebugTree());
 
-        randomUserApplicationComponent = DaggerRandomUserComponent.builder()
+      randomUserComponent =
+           DaggerRandomUserComponent
+                .builder()
                 .contextModule(new ContextModule(this))
                 .build();
-    }
+   }
 
-    public RandomUserComponent getRandomUserApplicationComponent(){
-        return randomUserApplicationComponent;
-    }
+   public RandomUserComponent getRandomUserComponent() {
+      return randomUserComponent;
+   }
 }

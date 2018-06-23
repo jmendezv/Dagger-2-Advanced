@@ -14,15 +14,15 @@ import dagger.Provides;
 @Module
 public class MainActivityModule {
 
-    private final MainActivity mainActivity;
-
-    public MainActivityModule(MainActivity mainActivity) {
-        this.mainActivity = mainActivity;
-    }
+//    private final MainActivity mainActivity;
+//
+//    public MainActivityModule(MainActivity mainActivity) {
+//        this.mainActivity = mainActivity;
+//    }
 
     @Provides
     @MainActivityScopeAnnotation
     public RandomUserAdapter randomUserAdapter(Picasso picasso){
-        return new RandomUserAdapter(mainActivity, picasso);
+        return new RandomUserAdapter(picasso);
     }
 }
