@@ -17,7 +17,6 @@ import okhttp3.OkHttpClient;
 @Module(includes = OkHttpClientModule.class)
 public class PicassoModule {
 
-    @RandomUserApplicationScopeAnnotation
     @Provides
     public Picasso picasso(@ApplicationContextAnnotation Context context, OkHttp3Downloader okHttp3Downloader){
         return new Picasso.Builder(context).

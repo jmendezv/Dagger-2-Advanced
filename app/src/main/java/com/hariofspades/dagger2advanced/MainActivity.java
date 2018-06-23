@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 .randomUserComponent(RandomUserApplication.get(this)
                      .getRandomUserComponent())
                 .build();
-      mainActivityComponent.injectMainActivity(this);
+      mainActivityComponent.inject(this);
    }
 
    public void afterDagger() {
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
            .contextModule(new ContextModule(this))
            .build();
       picasso = daggerRandomUserComponent.getPicasso();
-      randomUsersApi = daggerRandomUserComponent.getRandomUserService();
+      randomUsersApi = daggerRandomUserComponent.getRandomUserApi();
    }
 
    private void beforeDagger2() {

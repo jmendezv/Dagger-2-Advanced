@@ -21,7 +21,6 @@ public class ContextModule {
     }
 
     @ApplicationContextAnnotation
-    @RandomUserApplicationScopeAnnotation
     @Provides
     public Context context(){ return context.getApplicationContext(); }
 }

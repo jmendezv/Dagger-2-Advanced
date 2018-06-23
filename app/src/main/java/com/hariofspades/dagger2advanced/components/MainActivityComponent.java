@@ -8,11 +8,27 @@ import dagger.Component;
 
 /**
  * Created by Hari on 20/12/17.
+ * <p>
+ * Annotates an interface or abstract class for which a fully-formed,
+ * dependency-injected implementation is to be generated from a set of modules().
+ * <p>
+ * The generated class will have the name of the type annotated with @Component
+ * prepended with Dagger.
+ * <p>
+ * eg. interface MainActivityComponent -> class DaggerMainActivityComponent
+ * <p>
+ * Each Dagger component can be associated with a scope by annotating it with the scope annotation.
+ * <p>
+ * The component implementation ensures that there is only one provision of each scoped binding per
+ * instance of the component.
+ * <p>
+ * Components can use bindings only from another component interface by declaring a component
+ * dependency.
  */
-@Component(modules = MainActivityModule.class, dependencies = RandomUserComponent.class)
+@Component(modules = {MainActivityModule.class}, dependencies = {RandomUserComponent.class})
 @MainActivityScopeAnnotation
 public interface MainActivityComponent {
 
-    void injectMainActivity(MainActivity mainActivity);
+   void inject(MainActivity mainActivity);
 
 }
