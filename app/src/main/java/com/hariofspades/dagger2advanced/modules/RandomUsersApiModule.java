@@ -34,6 +34,7 @@ public class RandomUsersApiModule {
 
     @Provides
     public Gson gson(){
+
         return new GsonBuilder().create();
     }
 
@@ -41,6 +42,5 @@ public class RandomUsersApiModule {
     public GsonConverterFactory gsonConverterFactory(Gson gson){
         return GsonConverterFactory.create(gson);
     }
-
 
 }

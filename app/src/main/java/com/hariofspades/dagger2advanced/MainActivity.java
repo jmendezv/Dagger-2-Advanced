@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
+      Timber.d("In MainActivity.onCreate()");
       setContentView(R.layout.activity_main);
       initViews();
       //beforeDagger2();
@@ -53,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
       DaggerMainActivityComponent
            .builder()
            .contextModule(new ContextModule(this))
-           .randomUserComponent(RandomUserApplication.get(this)
+           .randomUserComponent(
+                RandomUserApplication.get(this)
                 .getRandomUserComponent())
            .build()
            .inject(this);

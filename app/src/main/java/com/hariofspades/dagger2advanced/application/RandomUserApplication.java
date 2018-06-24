@@ -27,6 +27,7 @@ public class RandomUserApplication extends Application {
    public void onCreate() {
       super.onCreate();
       Timber.plant(new Timber.DebugTree());
+      Timber.d("in RandomUserApplication.onCrete()");
 
       randomUserComponent =
            DaggerRandomUserComponent
