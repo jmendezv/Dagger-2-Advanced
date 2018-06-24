@@ -38,6 +38,9 @@ import retrofit2.http.Query;
  *
  * T is the successful response body type.
  *
+ * Retrofit.create(RandomUsersApi.class) returns an implementation of this
+ * interface.
+ *
  */
 
 public interface RandomUsersApi {

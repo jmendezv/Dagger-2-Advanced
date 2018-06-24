@@ -24,6 +24,7 @@ public class RandomUsersApiModule {
     @Provides
     public Retrofit retrofit(OkHttpClient okHttpClient,
                              GsonConverterFactory gsonConverterFactory){
+
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl("https://randomuser.me/")
@@ -33,8 +34,7 @@ public class RandomUsersApiModule {
 
     @Provides
     public Gson gson(){
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        return gsonBuilder.create();
+        return new GsonBuilder().create();
     }
 
     @Provides

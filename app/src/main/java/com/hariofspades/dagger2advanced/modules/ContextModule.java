@@ -21,7 +21,6 @@ public class ContextModule {
         this.context = context;
     }
 
-    //@RandomUserAnnotation
     @ApplicationContextAnnotation
     @Provides
     public Context getContext() {
