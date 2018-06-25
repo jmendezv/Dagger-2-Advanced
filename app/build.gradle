@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 26
@@ -44,4 +45,8 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.13'
     // If you want to use the support libraries with Dagger 2
     implementation 'com.google.dagger:dagger-android-support:2.13'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

@@ -24,7 +24,7 @@ import dagger.Component;
  * Components can use bindings only from another component interface by declaring a component
  * dependency.
  */
-@Component(modules = {ContextModule.class}, dependencies = {RandomUserComponent.class})
+@Component(modules = {ContextModule.class}, dependencies = {ApplicationComponent.class})
 public interface MainActivityComponent {
 
    void inject(MainActivity mainActivity);

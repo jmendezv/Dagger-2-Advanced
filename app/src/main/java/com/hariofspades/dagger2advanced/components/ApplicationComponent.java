@@ -17,9 +17,9 @@ import dagger.Component;
  * dependency and keep other inner dependency under the hood.
  */
 @Component(modules = {RandomUsersApiModule.class, PicassoModule.class})
-public interface RandomUserComponent {
+public interface ApplicationComponent {
 
-    RandomUsersApi getRandomUserApi();
+    RandomUsersApi getRandomUsersApi();
 
     Picasso getPicasso();
 }

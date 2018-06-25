@@ -3,8 +3,8 @@ package com.hariofspades.dagger2advanced.application;
 import android.app.Activity;
 import android.app.Application;
 
-import com.hariofspades.dagger2advanced.components.DaggerRandomUserComponent;
-import com.hariofspades.dagger2advanced.components.RandomUserComponent;
+import com.hariofspades.dagger2advanced.components.ApplicationComponent;
+import com.hariofspades.dagger2advanced.components.DaggerApplicationComponent;
 import com.hariofspades.dagger2advanced.modules.ContextModule;
 
 import timber.log.Timber;
@@ -17,7 +17,7 @@ import timber.log.Timber;
 
 public class RandomUserApplication extends Application {
 
-   private RandomUserComponent randomUserComponent;
+   private ApplicationComponent applicationComponent;
 
    public static RandomUserApplication get(Activity activity) {
       return (RandomUserApplication) activity.getApplication();
@@ -29,14 +29,14 @@ public class RandomUserApplication extends Application {
       Timber.plant(new Timber.DebugTree());
       Timber.d("in RandomUserApplication.onCrete()");
 
-      randomUserComponent =
-           DaggerRandomUserComponent
+      applicationComponent =
+           DaggerApplicationComponent
                 .builder()
                 .contextModule(new ContextModule(this))
                 .build();
    }
 
-   public RandomUserComponent getRandomUserComponent() {
-      return randomUserComponent;
+   public ApplicationComponent getApplicationComponent() {
+      return applicationComponent;
    }
 }

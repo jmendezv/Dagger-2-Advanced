@@ -1,5 +1,6 @@
 package com.hariofspades.dagger2advanced;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -8,11 +9,13 @@ import android.support.v7.widget.RecyclerView;
 
 import com.hariofspades.dagger2advanced.adapter.RandomUserAdapter;
 import com.hariofspades.dagger2advanced.application.RandomUserApplication;
-import com.hariofspades.dagger2advanced.components.MainActivityComponent;
 import com.hariofspades.dagger2advanced.interfaces.RandomUsersApi;
 import com.hariofspades.dagger2advanced.model.RandomUsers;
 import com.hariofspades.dagger2advanced.modules.ContextModule;
 import com.hariofspades.dagger2advanced.components.*;
+import com.hariofspades.dagger2advanced.preferences.AppSharedPreferences;
+
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -24,11 +27,7 @@ import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
-   // private Retrofit retrofit;
-
    private RecyclerView recyclerView;
-
-   // private Picasso picasso;
 
    @Inject
    RandomUsersApi randomUsersApi;
@@ -36,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
    @Inject
    RandomUserAdapter mAdapter;
 
+   @Inject
+   AppSharedPreferences mAppSharedPreferences;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -43,69 +44,24 @@ public class MainActivity extends AppCompatActivity {
       Timber.d("In MainActivity.onCreate()");
       setContentView(R.layout.activity_main);
       initViews();
-      //beforeDagger2();
-      //afterDagger();
-      afterActivityLevelComponent();
+      setupComponents();
       populateUsers();
-
    }
 
-   private void afterActivityLevelComponent() {
+   @Override
+   protected void onStart() {
+      super.onStart();
+      mAppSharedPreferences.storeString("last_edit", new Date().toString());
+   }
+
+   private void setupComponents() {
       DaggerMainActivityComponent
            .builder()
            .contextModule(new ContextModule(this))
-           .randomUserComponent(
-                RandomUserApplication.get(this)
-                .getRandomUserComponent())
+           .applicationComponent(RandomUserApplication.get(this)
+                .getApplicationComponent())
            .build()
            .inject(this);
-   }
-
-   public void afterDagger() {
-//      RandomUserComponent daggerRandomUserComponent = DaggerRandomUserComponent.builder()
-//           .contextModule(new ContextModule(this))
-//           .build();
-//      picasso = daggerRandomUserComponent.getPicasso();
-//      randomUsersApi = daggerRandomUserComponent.getRandomUserApi();
-   }
-
-   private void beforeDagger2() {
-//      GsonBuilder gsonBuilder = new GsonBuilder();
-//      Gson gson = gsonBuilder.create();
-//
-//      Timber.plant(new Timber.DebugTree());
-//
-//      File cacheFile = new File(this.getCacheDir(), "HttpCache");
-//      cacheFile.mkdirs();
-//
-//      Cache cache = new Cache(cacheFile, 10 * 1000 * 1000); //10 MB
-//
-//      HttpLoggingInterceptor httpLoggingInterceptor = new
-//           HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-//         @Override
-//         public void log(@NonNull String message) {
-//            Timber.i(message);
-//         }
-//      });
-//
-//      httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-//
-//
-//      OkHttpClient okHttpClient = new OkHttpClient()
-//           .newBuilder()
-//           .cache(cache)
-//           .addInterceptor(httpLoggingInterceptor)
-//           .build();
-//
-//      OkHttp3Downloader okHttpDownloader = new OkHttp3Downloader(okHttpClient);
-//
-//      picasso = new Picasso.Builder(this).downloader(okHttpDownloader).build();
-//
-//      retrofit = new Retrofit.Builder()
-//           .client(okHttpClient)
-//           .baseUrl("https://randomuser.me/")
-//           .addConverterFactory(GsonConverterFactory.create(gson))
-//           .build();
    }
 
    private void initViews() {
