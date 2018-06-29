@@ -3,7 +3,11 @@ package com.hariofspades.dagger2advanced.components;
 import com.hariofspades.dagger2advanced.MainActivity;
 import com.hariofspades.dagger2advanced.modules.ContextModule;
 
+import javax.inject.Singleton;
+
 import dagger.Component;
+import dagger.MembersInjector;
+import dagger.Subcomponent;
 
 /**
  * Created by Hari on 20/12/17.
@@ -27,6 +31,10 @@ import dagger.Component;
 @Component(modules = {ContextModule.class}, dependencies = {ApplicationComponent.class})
 public interface MainActivityComponent {
 
+   /* Members-injection methods */
    void inject(MainActivity mainActivity);
+
+   /* A method with no parameters that returns a MembersInjector is equivalent to a members injection method */
+   MembersInjector<MainActivity> inject();
 
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.hariofspades.dagger2advanced.interfaces.annotations.ApplicationContextAnnotation;
 import com.jakewharton.picasso.OkHttp3Downloader;
+import com.squareup.picasso.LruCache;
 import com.squareup.picasso.Picasso;
 
 import dagger.Module;
@@ -16,16 +17,21 @@ import okhttp3.OkHttpClient;
 @Module(includes = OkHttpClientModule.class)
 public class PicassoModule {
 
-    @Provides
-    public Picasso picasso(@ApplicationContextAnnotation Context context, OkHttp3Downloader okHttp3Downloader){
-        return new Picasso.Builder(context).
-                downloader(okHttp3Downloader).
-                build();
-    }
+   @Provides
+   public Picasso picasso(@ApplicationContextAnnotation Context context, OkHttp3Downloader okHttp3Downloader) {
 
-    @Provides
-    public OkHttp3Downloader okHttp3Downloader(OkHttpClient okHttpClient){
-        return new OkHttp3Downloader(okHttpClient);
-    }
+      return new Picasso
+           .Builder(context)
+           .downloader(okHttp3Downloader)
+           .loggingEnabled(false)
+           .memoryCache(new LruCache(context))
+           .indicatorsEnabled(false)
+           .build();
+   }
+
+   @Provides
+   public OkHttp3Downloader okHttp3Downloader(OkHttpClient okHttpClient) {
+      return new OkHttp3Downloader(okHttpClient);
+   }
 
 }

@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hariofspades.dagger2advanced.interfaces.RandomUsersApi;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
@@ -34,8 +36,9 @@ public class RandomUsersApiModule {
 
     @Provides
     public Gson gson(){
-
-        return new GsonBuilder().create();
+        return new GsonBuilder()
+             //.setDateFormat("dd/MM/yyyy")
+             .create();
     }
 
     @Provides

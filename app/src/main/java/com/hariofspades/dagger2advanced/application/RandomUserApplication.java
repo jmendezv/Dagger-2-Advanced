@@ -6,6 +6,9 @@ import android.app.Application;
 import com.hariofspades.dagger2advanced.components.ApplicationComponent;
 import com.hariofspades.dagger2advanced.components.DaggerApplicationComponent;
 import com.hariofspades.dagger2advanced.modules.ContextModule;
+import com.hariofspades.dagger2advanced.modules.OkHttpClientModule;
+import com.hariofspades.dagger2advanced.modules.PicassoModule;
+import com.hariofspades.dagger2advanced.modules.RandomUsersApiModule;
 
 import timber.log.Timber;
 
@@ -37,6 +40,7 @@ public class RandomUserApplication extends Application {
    }
 
    public ApplicationComponent getApplicationComponent() {
+
       return applicationComponent;
    }
 }

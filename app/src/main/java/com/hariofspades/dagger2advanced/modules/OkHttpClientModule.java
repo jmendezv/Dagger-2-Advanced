@@ -30,6 +30,7 @@ public class OkHttpClientModule {
 
     @Provides
     public Cache cache(File cacheFile){
+
         return new Cache(cacheFile, 10 * 1000 * 1000); //10 MB
     }
 
@@ -48,6 +49,7 @@ public class OkHttpClientModule {
                 Timber.d(message);
             }
         });
+        /* BASIC, BODY, HEADERS, NONE  */
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return httpLoggingInterceptor;
     }

@@ -19,20 +19,25 @@ import java.util.List;
  * Created by Hari on 20/11/17.
  */
 
-public class RandomUserAdapter extends RecyclerView.Adapter<RandomUserAdapter.RandomUserViewHolder> {
+public class RandomUserAdapter
+     extends RecyclerView.Adapter<RandomUserAdapter.RandomUserViewHolder> {
 
     private final Picasso picasso;
     private List<Result> resultList = new ArrayList<>();
 
 
     public RandomUserAdapter(Picasso picasso) {
+
         this.picasso = picasso;
     }
 
     @Override
     public RandomUserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_random_user,
+        View view = LayoutInflater
+             .from(parent.getContext())
+             .inflate(R.layout.list_item_random_user,
                 parent, false);
+
         return new RandomUserViewHolder(view);
     }
 
@@ -48,6 +53,7 @@ public class RandomUserAdapter extends RecyclerView.Adapter<RandomUserAdapter.Ra
 
     @Override
     public int getItemCount() {
+
         return resultList.size();
     }
 
