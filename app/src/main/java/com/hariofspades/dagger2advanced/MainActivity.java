@@ -63,25 +63,20 @@ public class MainActivity extends AppCompatActivity {
       DaggerMainActivityComponent
            .builder()
            .contextModule(new ContextModule(this))
-           .applicationComponent(
-                RandomUserApplication
-                     .get(this)
-                     .getApplicationComponent()
-           )
            .build()
            .inject(this);
    }
 
    /* A method with no parameters that returns a MembersInjector is equivalent to a members injection method */
    private void setupComponents2() {
-      MainActivityComponent mainActivityComponent = DaggerMainActivityComponent
-           .builder()
-           .contextModule(new ContextModule(this))
-           .applicationComponent(RandomUserApplication.get(this)
-                .getApplicationComponent())
-           .build();
-
-      mainActivityComponent.inject().injectMembers(this);
+//      MainActivityComponent mainActivityComponent = DaggerMainActivityComponent
+//           .builder()
+//           .contextModule(new ContextModule(this))
+//           .applicationComponent(RandomUserApplication.get(this)
+//                .getApplicationComponent())
+//           .build();
+//
+//      mainActivityComponent.inject().injectMembers(this);
    }
 
    private void initViews() {
