@@ -16,7 +16,7 @@ import timber.log.Timber;
 /**
  * Created by Hari on 23/11/17.
  */
-@Module(includes = ContextModule.class)
+@Module(includes = {ContextModule.class})
 public class OkHttpClientModule {
 
     @Provides

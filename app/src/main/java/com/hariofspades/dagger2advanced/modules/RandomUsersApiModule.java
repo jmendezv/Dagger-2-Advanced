@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hariofspades.dagger2advanced.interfaces.RandomUsersApi;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
@@ -15,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by Hari on 23/11/17.
  */
-@Module(includes = OkHttpClientModule.class)
+@Module(includes = {OkHttpClientModule.class})
 public class RandomUsersApiModule {
 
     @Provides

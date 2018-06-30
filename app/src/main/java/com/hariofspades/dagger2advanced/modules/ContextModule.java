@@ -1,13 +1,8 @@
 package com.hariofspades.dagger2advanced.modules;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
-import com.hariofspades.dagger2advanced.adapter.RandomUserAdapter;
 import com.hariofspades.dagger2advanced.interfaces.annotations.ApplicationContextAnnotation;
-import com.hariofspades.dagger2advanced.preferences.AppSharedPreferences;
-import com.squareup.picasso.Picasso;
 
 import dagger.Module;
 import dagger.Provides;
@@ -34,14 +29,14 @@ public class ContextModule {
       return context;
    }
 
-   @Provides
-   public RandomUserAdapter getRandomUserAdapter(Picasso picasso) {
-      return new RandomUserAdapter(picasso);
-   }
-
-   @Provides
-   public AppSharedPreferences getSharedPreferences() {
-      return new AppSharedPreferences(context);
-   }
+//   @Provides
+//   public RandomUserAdapter getRandomUserAdapter(Picasso picasso) {
+//      return new RandomUserAdapter(picasso);
+//   }
+//
+//   @Provides
+//   public AppSharedPreferences getSharedPreferences() {
+//      return new AppSharedPreferences(context);
+//   }
 
 }

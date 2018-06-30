@@ -1,4 +1,4 @@
-package com.hariofspades.dagger2advanced.preferences
+package com.hariofspades.dagger2advanced.services
 
 import android.content.Context
 import android.content.SharedPreferences

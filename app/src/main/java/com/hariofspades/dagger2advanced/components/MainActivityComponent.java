@@ -1,6 +1,7 @@
 package com.hariofspades.dagger2advanced.components;
 
 import com.hariofspades.dagger2advanced.MainActivity;
+import com.hariofspades.dagger2advanced.modules.ApplicationModule;
 import com.hariofspades.dagger2advanced.modules.ContextModule;
 import com.hariofspades.dagger2advanced.modules.PicassoModule;
 import com.hariofspades.dagger2advanced.modules.RandomUsersApiModule;
@@ -30,7 +31,7 @@ import dagger.Subcomponent;
  * Components can use bindings only from another component interface by declaring a component
  * dependency.
  */
-@Component(modules = {ContextModule.class, RandomUsersApiModule.class, PicassoModule.class})
+@Component(modules = {ContextModule.class, ApplicationModule.class})
 public interface MainActivityComponent {
 
    /* Members-injection methods */

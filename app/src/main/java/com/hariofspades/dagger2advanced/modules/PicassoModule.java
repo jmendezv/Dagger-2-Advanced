@@ -14,7 +14,7 @@ import okhttp3.OkHttpClient;
 /**
  * Created by Hari on 23/11/17.
  */
-@Module(includes = OkHttpClientModule.class)
+@Module(includes = {OkHttpClientModule.class})
 public class PicassoModule {
 
    @Provides
