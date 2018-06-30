@@ -8,14 +8,13 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.hariofspades.dagger2advanced.adapter.RandomUserAdapter;
 import com.hariofspades.dagger2advanced.interfaces.RandomUsersApi;
-import com.hariofspades.dagger2advanced.model.RandomUsers;
-import com.hariofspades.dagger2advanced.model.Result;
+import com.hariofspades.dagger2advanced.model.json.RandomUsers;
+import com.hariofspades.dagger2advanced.model.json.Result;
 import com.hariofspades.dagger2advanced.modules.ContextModule;
 import com.hariofspades.dagger2advanced.components.*;
 import com.hariofspades.dagger2advanced.services.AppSharedPreferences;

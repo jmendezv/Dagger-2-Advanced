@@ -1,6 +1,6 @@
 package com.hariofspades.dagger2advanced.interfaces;
 
-import com.hariofspades.dagger2advanced.model.RandomUsers;
+import com.hariofspades.dagger2advanced.model.json.RandomUsers;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

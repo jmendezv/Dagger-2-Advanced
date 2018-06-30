@@ -1,5 +1,5 @@
 
-package com.hariofspades.dagger2advanced.model;
+package com.hariofspades.dagger2advanced.model.json;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

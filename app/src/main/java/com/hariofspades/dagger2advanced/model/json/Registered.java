@@ -1,9 +1,9 @@
-package com.hariofspades.dagger2advanced.model;
+package com.hariofspades.dagger2advanced.model.json;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Dob {
+public class Registered {
 
    @SerializedName("date")
    @Expose
@@ -27,4 +27,5 @@ public class Dob {
    public void setAge(Integer age) {
       this.age = age;
    }
+
 }
