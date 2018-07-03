@@ -3,6 +3,7 @@ package com.hariofspades.dagger2advanced.model.db;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
 import java.util.List;
@@ -22,8 +23,8 @@ public interface ResultDao {
    @Query("SELECT COUNT(*) from result")
    int countResult();
 
-   @Insert
-   void insert(ResultEntity entity);
+   @Insert(onConflict = OnConflictStrategy.REPLACE)
+   void insert(ResultEntity... entity);
 
    @Delete
    void delete(ResultEntity entity);

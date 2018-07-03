@@ -11,6 +11,8 @@ import android.content.Context;
 * You must perform queries on worker thread,
 * otherwise your application will crash.
 *
+* The database serves as the single source of truth.
+*
 * */
 @Database(entities = {ResultEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
@@ -25,6 +27,7 @@ public abstract class AppDatabase extends RoomDatabase {
               context.getApplicationContext(),
               AppDatabase.class,
               "app-database")
+              // Don't do this on a real app! Use a worker thread instead.
               .allowMainThreadQueries()
               .build();
       }

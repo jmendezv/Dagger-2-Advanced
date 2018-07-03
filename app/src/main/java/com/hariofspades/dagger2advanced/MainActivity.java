@@ -2,17 +2,25 @@ package com.hariofspades.dagger2advanced;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.OnLifecycleEvent;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.hariofspades.dagger2advanced.adapter.RandomUserAdapter;
 import com.hariofspades.dagger2advanced.interfaces.RandomUsersApi;
+import com.hariofspades.dagger2advanced.model.db.AppDatabase;
+import com.hariofspades.dagger2advanced.model.db.ResultDao;
+import com.hariofspades.dagger2advanced.model.db.ResultEntity;
+import com.hariofspades.dagger2advanced.model.db.ResultProfileViewModel;
+import com.hariofspades.dagger2advanced.model.db.ResultRepository;
 import com.hariofspades.dagger2advanced.model.json.RandomUsers;
 import com.hariofspades.dagger2advanced.model.json.Result;
 import com.hariofspades.dagger2advanced.modules.ContextModule;
@@ -34,6 +42,10 @@ import timber.log.Timber;
  * randomapi.com
  * jmendez1/nif-
  * O0Z4-1SI8-T4WP-MNRK
+ * android.support.v7.app.AppCompatActivity extends LifecycleOwner
+ *
+ * Jetpack is a set of libraries, tools and architectural guidance
+ * to help make it quick and easy to build great Android apps.
  *
  * */
 public class MainActivity extends AppCompatActivity {
@@ -54,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
    @Inject
    Vibrator mVibrator;
 
+   private ResultProfileViewModel viewModel;
+
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
@@ -62,8 +76,11 @@ public class MainActivity extends AppCompatActivity {
       initViews();
       setupComponents1();
       populateUsers();
+      viewModel = ViewModelProviders.of(this).get(ResultProfileViewModel.class);
+
    }
 
+   @MainThread
    private void vibrate() {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
          mVibrator.vibrate(VibrationEffect.createOneShot(250, 1));
@@ -74,40 +91,41 @@ public class MainActivity extends AppCompatActivity {
 
    private void setupComponents1() {
 
+
       getLifecycle().addObserver(new android.arch.lifecycle.LifecycleObserver() {
 
          @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
          void onCreate() {
-            Toast.makeText(getApplicationContext(), "LifeCycleObserver.onCreate()", Toast.LENGTH_LONG).show();
+            // Toast.makeText(getApplicationContext(), "LifeCycleObserver.onCreate()", Toast.LENGTH_LONG).show();
          }
 
          @OnLifecycleEvent(Lifecycle.Event.ON_START)
          void onStart() {
-            Toast.makeText(getApplicationContext(), "LifeCycleObserver.onStart()", Toast.LENGTH_LONG).show();
+            // Toast.makeText(getApplicationContext(), "LifeCycleObserver.onStart()", Toast.LENGTH_LONG).show();
             mAppSharedPreferences.storeString("last_edit", new Date().toString());
          }
 
          @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
          void onPause() {
-            Toast.makeText(getApplicationContext(), "LifeCycleObserver.onPause()", Toast.LENGTH_LONG).show();
+            // Toast.makeText(getApplicationContext(), "LifeCycleObserver.onPause()", Toast.LENGTH_LONG).show();
          }
 
          @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
          void onStop() {
             vibrate();
-            Toast.makeText(getApplicationContext(), "LifeCycleObserver.onStop()", Toast.LENGTH_LONG).show();
+            // Toast.makeText(getApplicationContext(), "LifeCycleObserver.onStop()", Toast.LENGTH_LONG).show();
          }
 
          @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
          void onResume() {
             vibrate();
-            Toast.makeText(getApplicationContext(), "LifeCycleObserver.onResume()", Toast.LENGTH_LONG).show();
+            // Toast.makeText(getApplicationContext(), "LifeCycleObserver.onResume()", Toast.LENGTH_LONG).show();
          }
 
          @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
          void onDestroy() {
             vibrate();
-            Toast.makeText(getApplicationContext(), "LifeCycleObserver.onDestroy()", Toast.LENGTH_LONG).show();
+            // Toast.makeText(getApplicationContext(), "LifeCycleObserver.onDestroy()", Toast.LENGTH_LONG).show();
          }
 
       });
@@ -145,6 +163,18 @@ public class MainActivity extends AppCompatActivity {
             if (response.isSuccessful()) {
                //mAdapter.get().setItems(response.body().getResults());
                List<Result> results = response.body().getResults();
+
+               ResultRepository repo = new ResultRepository(getApplicationContext(), results);
+               viewModel.init(repo);
+               viewModel.getResults().observe(((AppCompatActivity)getApplicationContext()), new android.arch.lifecycle.Observer<List<ResultEntity>>() {
+
+                  @Override
+                  public void onChanged(@Nullable List<ResultEntity> resultEntities) {
+
+                  }
+               } );
+               repo.saveResult();
+
                mAdapter.setItems(results);
                recyclerView.setAdapter(mAdapter);
                Toast.makeText(getApplicationContext(), "adapter " + results.size(), Toast.LENGTH_LONG).show();
@@ -157,5 +187,6 @@ public class MainActivity extends AppCompatActivity {
          }
       });
    }
+
 
 }
